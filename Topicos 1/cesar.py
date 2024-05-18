@@ -1,18 +1,18 @@
 def cifra_cesar(test_size: int, key_list: list, code_list: list):
     if test_size <= 0:
-        return False
+        return [False, [""]]
 
+    list_decodes = []
     alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     for index_teste in range(test_size):
-        # Key represents the amount of shift applied
         key = key_list[index_teste]
         if 0 > key or key > 25:
-            return False
+            return [False, [""]]
 
         code = code_list[index_teste]
-        if not code.isalpha() or not code.isupper():
-            return False
+        if not code.isalpha() or not code.isupper() or len(code) > 50:
+            return [False, [""]]
 
         decoded = ""
 
@@ -26,4 +26,6 @@ def cifra_cesar(test_size: int, key_list: list, code_list: list):
             decoded += alfabeto[desc_index]
 
         print(decoded)
-    return True
+        list_decodes.append(decoded)
+
+    return [True, list_decodes]
