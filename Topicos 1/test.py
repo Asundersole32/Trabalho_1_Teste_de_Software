@@ -13,8 +13,27 @@ class CesarTests(unittest.TestCase):
         self.assertEqual(cifra_cesar(1, [9], ["412"]), False)
 
     def test_4(self):
-        self.assertEqual(cifra_cesar(6, [2, 10, 0, 25, 1, 4], ["VQREQFGT", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "TOPCODER",
-                                                               "ZWBGLZ", "DBNPCBQ", "LIPPSASVPH"]), True)
+        self.assertEqual(
+            cifra_cesar(
+                6,
+                [2, 10, 0, 25, 1, 4],
+                [
+                    "VQREQFGT",
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                    "TOPCODER",
+                    "ZWBGLZ",
+                    "DBNPCBQ",
+                    "LIPPSASVPH",
+                ],
+            ),
+            True,
+        )
+
+    def test5(self):
+        self.assertEqual(cifra_cesar(0, [], []), False)
+
+    def test6(self):
+        self.assertEqual(cifra_cesar(1, [-1], ["A"]), False)
 
 
 unittest.main()

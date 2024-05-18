@@ -1,32 +1,29 @@
-def cifra_cesar(test_number: int, key_list: list, code_list: list):
-    if test_number <= 0:
+def cifra_cesar(test_size: int, key_list: list, code_list: list):
+    if test_size <= 0:
         return False
 
-    for tests in range(test_number):
+    alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-        key = key_list[tests]
-        code = code_list[tests]
-
-        if 0 > key > 25:
+    for index_teste in range(test_size):
+        # Key represents the amount of shift applied
+        key = key_list[index_teste]
+        if 0 > key or key > 25:
             return False
 
-        lettlers_list = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-                         "T", "U", "V", "W", "X", "Y", "Z"]
+        code = code_list[index_teste]
+        if not code.isalpha() or not code.isupper():
+            return False
 
-        code_lettler_list = list(code)
+        decoded = ""
 
-        descriptified_code = ""
+        for letter in code:
+            alf_index = alfabeto.find(letter)
+            desc_index = alf_index - key
 
-        for lettler in code_lettler_list:
-            if lettler not in lettlers_list:
-                return False
-            else:
-                for index in range(len(lettlers_list)):
-                    if lettler == lettlers_list[index]:
-                        index = index - key
-                        descriptified_code = descriptified_code + lettlers_list[index]
-                        break
+            if desc_index < 0:
+                desc_index += 26
 
-        print(descriptified_code)
+            decoded += alfabeto[desc_index]
+
+        print(decoded)
     return True
-
