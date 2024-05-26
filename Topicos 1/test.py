@@ -47,13 +47,27 @@ class CesarTests(unittest.TestCase):
     def test5(self):
         self.assertEqual(cifra_cesar(0, [], []), [False, [""]])
 
-    # Testa deslocamento(key) negativo
+    # Testa entradas maiores que a especificação
     def test6(self):
+        self.assertEqual(cifra_cesar(1, [1], ["" * 100]), [False, [""]])
+
+    # Testa deslocamento(key) negativo
+    def test7(self):
         self.assertEqual(cifra_cesar(1, [-1], ["A"]), [False, [""]])
 
-    # Testa entradas maiores que a especificação
-    def test7(self):
-        self.assertEqual(cifra_cesar(1, [1], ["" * 100]), [False, [""]])
+    # Chave abaixo do minimo
+    def test8(self):
+        self.assertEqual(cifra_cesar(1, [-1], ["XY"]), [False, [""]])
+
+    # Chave acima do maximo
+    def test9(self):
+        self.assertEqual(cifra_cesar(1, [26], ["XYZ"]), [False, [""]])
+
+    # Mistura de entradas validas e invalidas
+    def test10(self):
+        self.assertEqual(
+            cifra_cesar(3, [3, 26, 1], ["KHOOR", "WORLD", "BSP"]), [False, [""]]
+        )
 
 
 unittest.main()
